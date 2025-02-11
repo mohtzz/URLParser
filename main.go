@@ -61,6 +61,7 @@ func main() {
 	wg.Wait()
 }
 
+// функция, считывающая адреса с файла и записывающая в массив для дальнейшей работы
 func readSitesFromFile(filePath string) ([]string, error) {
 	file, err := os.Open(filePath)
 	fmt.Println("Файл открыт, чтение...")
