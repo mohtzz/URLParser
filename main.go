@@ -71,7 +71,7 @@ func readSitesFromFile(filePath string) ([]string, error) {
 	}
 	defer file.Close()
 
-	//в созданный массив записываем append'ом адреса с файла
+	//в созданный срез записываем append'ом адреса с файла
 	var sites []string
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
