@@ -43,6 +43,7 @@ func main() {
 
 	if _, err := os.Stat(*resultDir); os.IsNotExist(err) {
 		fmt.Println("Директория не была найдена, создание директории...")
+		// 0777 - полный доступ для всех
 		os.MkdirAll(*resultDir, 0777)
 	}
 
@@ -61,7 +62,7 @@ func main() {
 	wg.Wait()
 }
 
-// функция, считывающая адреса с файла и записывающая в массив для дальнейшей работы
+// readSitesFromFile - функция, считывающая адреса с файла и записывающая в массив для дальнейшей работы
 func readSitesFromFile(filePath string) ([]string, error) {
 	file, err := os.Open(filePath)
 	fmt.Println("Файл открыт, чтение...")
@@ -82,7 +83,7 @@ func readSitesFromFile(filePath string) ([]string, error) {
 	return sites, nil
 }
 
-// обработка сайта и get-запрос
+// processSite - функция для обработки адреса(get-запрос и превращение в .html-файл)
 func processSite(site string, resultDir string) error {
 	resp, err := http.Get(site)
 	if err != nil {
@@ -99,7 +100,7 @@ func processSite(site string, resultDir string) error {
 	}
 }
 
-// сохранение сайта в формате html
+// saveHTML - функция, создающая файл и записывающая в него тело ответа get-запроса
 func saveHTML(filename string, body io.Reader) error {
 	file, err := os.Create(filename)
 	if err != nil {
