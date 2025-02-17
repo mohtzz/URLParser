@@ -28,7 +28,7 @@ func main() {
 	// проверка на корректность флагов
 
 	if *inputFilePath == "" || *resultDir == "" {
-		fmt.Println("Не указаны флаги/один из флагов")
+		fmt.Println("Не указаны флаги/один из флагов(src/dst)")
 		return
 	}
 
