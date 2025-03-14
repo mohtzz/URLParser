@@ -93,7 +93,10 @@ func processSite(site string, resultDir string) error {
 
 	// проверка статус-кода и форматирование
 	if resp.StatusCode == http.StatusOK {
-		filename := filepath.Join(resultDir, strings.ReplaceAll(site, "/", "_")+".html")
+		sanitizedSite := strings.ReplaceAll(site, "/", "_")
+		sanitizedSite = strings.ReplaceAll(sanitizedSite, ":", "_")
+
+		filename := filepath.Join(resultDir, sanitizedSite+".html")
 		return saveHTML(filename, resp.Body)
 	} else {
 		fmt.Println("Сайт", site, "вернул статус-код: ", resp.StatusCode)
