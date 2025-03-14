@@ -90,6 +90,7 @@ func processSite(site string, resultDir string) error {
 		return err
 	}
 	defer resp.Body.Close()
+
 	// проверка статус-кода и форматирование
 	if resp.StatusCode == http.StatusOK {
 		filename := filepath.Join(resultDir, strings.ReplaceAll(site, "/", "_")+".html")
